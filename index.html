@@ -63,18 +63,22 @@
             /* Fundo branco caso a imagem 2 seja menor */
         }
 
-        /* Área interativa baseada no aspecto original do convite (proporção 9:16 típica) */
+        /* Área interativa (Sempre coincidente com a imagem 'contain') */
         .interaction-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            max-width: 450px;
-            /* Largura máxima para desktop */
-            aspect-ratio: 9 / 16;
-            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Fórmula mágica para manter 9:16 dentro da tela sem sobrar */
+            width: min(100vw, calc(100vh * 9 / 16));
+            height: min(100vh, calc(100vw * 16 / 9));
+            pointer-events: none; /* Permite interagir com o que está dentro */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+        }
+
+        .interaction-wrapper * {
+            pointer-events: auto; /* Reativa cliques nos botões e inputs */
         }
 
         /* Estrelas Brilhantes */
@@ -185,13 +189,6 @@
             z-index: 100;
         }
 
-        /* Ajuste de responsividade para telas largas */
-        @media (min-aspect-ratio: 9/16) {
-            .interaction-wrapper {
-                height: 100vh;
-                width: auto;
-            }
-        }
     </style>
 </head>
 

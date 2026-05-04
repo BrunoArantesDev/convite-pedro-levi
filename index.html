@@ -273,8 +273,9 @@
             const message = `Olá!\n\nCom muita alegria, confirmamos nossa presença no aniversário do Pequeno Pedro Levi!\n\nEstamos felizes em participar desse momento tão especial e celebrar esse primeiro aninho cheio de amor, encanto e alegria.\n\nNome: ${name}\nConvidados: ${qty}\n\nAté a festa!`;
             const encodedMessage = encodeURIComponent(message);
             
-            // Link de alta compatibilidade para mobile
-            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+            // Link direto para o número do anfitrião
+            const phone = "558198975368";
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
             
             window.location.href = whatsappUrl;
         });

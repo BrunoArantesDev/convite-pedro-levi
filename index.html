@@ -189,6 +189,32 @@
             z-index: 100;
         }
 
+        /* Botão Voltar */
+        .btn-back {
+            position: absolute;
+            top: 3%;
+            left: 5%;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 50%;
+            color: #457b9d;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 110;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-back:active {
+            transform: scale(0.9);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
     </style>
 </head>
 
@@ -213,6 +239,9 @@
         <div id="screen2" class="screen">
             <div class="interaction-wrapper">
                 <div class="stars-overlay" id="stars2"></div>
+
+                <!-- Botão Voltar -->
+                <button class="btn-back" id="goBack" title="Voltar para o convite">←</button>
 
                 <!-- Formulário Interativo sobre a Foto 2 -->
                 <div class="input-group-name">
@@ -243,6 +272,8 @@
         const btnWhatsapp = document.getElementById('btnConfirmWhatsApp');
         const guestNameInput = document.getElementById('guestName');
 
+        const btnBack = document.getElementById('goBack');
+
         // Transição de tela 1 para tela 2
         btn.addEventListener('click', () => {
             s1.style.opacity = '0';
@@ -253,6 +284,19 @@
                 s2.classList.add('active');
                 s2.style.opacity = '1';
                 s2.style.transform = 'scale(1)';
+            }, 600);
+        });
+
+        // Transição de tela 2 para tela 1 (Voltar)
+        btnBack.addEventListener('click', () => {
+            s2.style.opacity = '0';
+            s2.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                s2.classList.remove('active');
+                s1.classList.add('active');
+                s1.style.opacity = '1';
+                s1.style.transform = 'scale(1)';
             }, 600);
         });
 
